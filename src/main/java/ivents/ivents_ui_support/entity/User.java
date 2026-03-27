@@ -30,14 +30,14 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
 
-    @Column(name = "failed_login_count")
-    private Integer failedLoginCount = 0;
+    @Column(name = "failed_login")
+    private Integer failedLogin = 0;
 
     @Column(name = "locked_until")
     private LocalDateTime lockedUntil;
 
-    @Column(name = "status")
-    private String status = "ACTIVE";
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 
     @Column(name = "created_by")
     private String createdBy = "system";
