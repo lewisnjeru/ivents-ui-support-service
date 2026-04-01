@@ -17,7 +17,7 @@ import java.time.Instant;
 public class Task {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "space_id")
@@ -51,11 +51,11 @@ public class Task {
     private Instant createdOn;
 
     @Column(name = "created_by")
-    private Instant createdBy;
+    private String createdBy;
 
     @Column(name = "modified_on")
     private Instant modifiedOn;
 
     @Column(name = "modified_by")
-    private Instant modifiedBy;
+    private String modifiedBy;
 }

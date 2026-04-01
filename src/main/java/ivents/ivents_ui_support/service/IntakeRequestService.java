@@ -5,6 +5,7 @@ import ivents.ivents_ui_support.dto.data.UserData;
 import ivents.ivents_ui_support.dto.request.CreateIntakeRequestRequest;
 import ivents.ivents_ui_support.dto.response.EntityResponse;
 import ivents.ivents_ui_support.dto.response.PaginationResponse;
+import ivents.ivents_ui_support.dto.role_permission.UserDetailsData;
 import ivents.ivents_ui_support.entity.IntakeRequest;
 import ivents.ivents_ui_support.repository.IntakeRequestRepository;
 import ivents.ivents_ui_support.util.AuthUtil;
@@ -66,8 +67,8 @@ public class IntakeRequestService {
     }
 
     public EntityResponse createIntakeRequest(CreateIntakeRequestRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        Long userId = userDataOpt.map(UserData::getId).orElse(null);
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        Long userId = userDataOpt.map(UserDetailsData::getId).orElse(null);
 
         IntakeRequest intakeRequest = IntakeRequest.builder()
                 .spaceId(request.getSpaceId())

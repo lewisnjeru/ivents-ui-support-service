@@ -6,11 +6,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 @Repository
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
     Optional<Permission> findByPermissionName(String name);
 
-    @Query(value = "SELECT id FROM permissions WHERE permission_name = :permissionName", nativeQuery = true)
-    Long findIdByName(@Param("permissionName") String permissionName);
+    @Query("SELECT p.id FROM Permission p WHERE p.permissionName = :name")
+    Long findIdByName(@Param("name") String name);
+
+    @Query("SELECT p.permissionName FROM Permission p " +
+            "JOIN RolePermission rp ON rp.permissionId = p.id " +
+            "WHERE rp.roleId = :roleId")
+    List<String> findAllPermissionNamesByRoleId(@Param("roleId") Long roleId);
 }

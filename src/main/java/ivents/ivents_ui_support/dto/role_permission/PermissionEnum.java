@@ -38,7 +38,7 @@ public enum PermissionEnum {
     //roles
     GET_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/get", "Get Roles", Verb.GET.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
     CREATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/create", "Create Role", Verb.POST.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
-    UPDATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/update", "Update Role", Verb.PUT.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN));
+    UPDATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/update", "Update Role", Verb.PUT.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN, PermissionTag.MANAGER, PermissionTag.TELLER)),;
 
     public final String module;
     public final String subModule;

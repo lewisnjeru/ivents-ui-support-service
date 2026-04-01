@@ -30,8 +30,8 @@ public class Role {
     private String modifiedBy;
 
     @Column(name = "created_on")
-    private LocalDateTime createdOn;
+    private Instant createdOn;
 
     @Column(name = "modified_on")
-    private LocalDateTime modifiedOn;
+    private Instant modifiedOn;
 }

@@ -5,6 +5,7 @@ import ivents.ivents_ui_support.dto.data.UserData;
 import ivents.ivents_ui_support.dto.request.CreateCommentRequest;
 import ivents.ivents_ui_support.dto.response.EntityResponse;
 import ivents.ivents_ui_support.dto.response.PaginationResponse;
+import ivents.ivents_ui_support.dto.role_permission.UserDetailsData;
 import ivents.ivents_ui_support.entity.Comment;
 import ivents.ivents_ui_support.repository.CommentRepository;
 import ivents.ivents_ui_support.specification.CommentSpecification;
@@ -71,8 +72,8 @@ public class CommentService {
     }
 
     public EntityResponse createComment(CreateCommentRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Comment comment = Comment.builder()
                 .content(request.getContent())

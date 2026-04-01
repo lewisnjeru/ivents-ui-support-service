@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 @Data
 @NoArgsConstructor
@@ -29,8 +27,8 @@ public class RoleData {
     private String modifiedBy;
 
     @JsonProperty("created_on")
-    private LocalDateTime createdOn;
+    private Instant createdOn;
 
     @JsonProperty("modified_on")
-    private LocalDateTime modifiedOn;
+    private Instant modifiedOn;
 }

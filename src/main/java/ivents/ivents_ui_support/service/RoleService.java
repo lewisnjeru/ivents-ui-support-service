@@ -6,6 +6,7 @@ import ivents.ivents_ui_support.dto.request.CreateRoleRequest;
 import ivents.ivents_ui_support.dto.request.UpdateRoleRequest;
 import ivents.ivents_ui_support.dto.response.EntityResponse;
 import ivents.ivents_ui_support.dto.response.PaginationResponse;
+import ivents.ivents_ui_support.dto.role_permission.UserDetailsData;
 import ivents.ivents_ui_support.entity.Role;
 import ivents.ivents_ui_support.repository.RoleRepository;
 import ivents.ivents_ui_support.specification.RoleSpecification;
@@ -74,15 +75,15 @@ public class RoleService {
     }
 
     public EntityResponse createRole(CreateRoleRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Role role = Role.builder()
                 .name(request.getName())
                 .createdBy(email)
                 .modifiedBy(email)
-                .createdOn(LocalDateTime.now())
-                .modifiedOn(LocalDateTime.now())
+                .createdOn(Instant.now())
+                .modifiedOn(Instant.now())
                 .build();
 
         roleRepository.save(role);
@@ -95,8 +96,8 @@ public class RoleService {
     }
 
     public EntityResponse updateRole(UpdateRoleRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Optional<Role> existingRoleOpt = roleRepository.findById(request.getId());
 
@@ -111,7 +112,7 @@ public class RoleService {
         Role role = existingRoleOpt.get();
         role.setName(request.getName());
         role.setModifiedBy(email);
-        role.setModifiedOn(LocalDateTime.now());
+        role.setModifiedOn(Instant.now());
 
         roleRepository.save(role);
 

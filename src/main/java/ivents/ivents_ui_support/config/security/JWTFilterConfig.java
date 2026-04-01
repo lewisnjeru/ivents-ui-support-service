@@ -77,7 +77,6 @@ public class JWTFilterConfig extends OncePerRequestFilter {
         String email = claims.get("email", String.class);
         String username = claims.get("username", String.class);
         Long roleId = claims.get("role_id", Long.class);
-        List<Long> teamIds = claims.get("team_ids", List.class);
 
         List<String> permissions = (List<String>) claims.get("permissions");
         String path = request.getRequestURI();
@@ -110,6 +109,8 @@ public class JWTFilterConfig extends OncePerRequestFilter {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
 
         chain.doFilter(request, response);
     }

@@ -1,16 +1,17 @@
 package ivents.ivents_ui_support.service;
 
 import ivents.ivents_ui_support.dto.data.TaskData;
-import ivents.ivents_ui_support.dto.data.UserData;
 import ivents.ivents_ui_support.dto.request.CreateTaskRequest;
 import ivents.ivents_ui_support.dto.request.UpdateTaskRequest;
 import ivents.ivents_ui_support.dto.response.EntityResponse;
 import ivents.ivents_ui_support.dto.response.PaginationResponse;
+import ivents.ivents_ui_support.dto.role_permission.UserDetailsData;
 import ivents.ivents_ui_support.entity.Task;
 import ivents.ivents_ui_support.repository.TaskRepository;
 import ivents.ivents_ui_support.specification.TaskSpecification;
 import ivents.ivents_ui_support.util.AuthUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TaskService {
@@ -70,8 +72,9 @@ public class TaskService {
     }
 
     public EntityResponse createTask(CreateTaskRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        log.info("logged info {}", userDataOpt.get().getEmail());
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Task task = Task.builder()
                 .spaceId(request.getSpaceId())
@@ -84,7 +87,7 @@ public class TaskService {
                 .assigneeId(request.getAssigneeId())
                 .reviewerId(request.getReviewerId())
                 .createdOn(Instant.now())
-                .modifiedOn(Instant.now())
+                .createdBy(email)
                 .build();
 
         taskRepository.save(task);
@@ -97,8 +100,8 @@ public class TaskService {
     }
 
     public EntityResponse updateTask(UpdateTaskRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Optional<Task> existingTaskOpt = taskRepository.findById(request.getId());
 

@@ -5,6 +5,7 @@ import ivents.ivents_ui_support.dto.data.UserData;
 import ivents.ivents_ui_support.dto.request.CreateSpaceRequest;
 import ivents.ivents_ui_support.dto.response.EntityResponse;
 import ivents.ivents_ui_support.dto.response.PaginationResponse;
+import ivents.ivents_ui_support.dto.role_permission.UserDetailsData;
 import ivents.ivents_ui_support.entity.Space;
 import ivents.ivents_ui_support.repository.SpaceRepository;
 import ivents.ivents_ui_support.specification.SpaceSpecification;
@@ -69,8 +70,8 @@ public class SpaceService {
     }
 
     public EntityResponse createSpace(CreateSpaceRequest request) {
-        Optional<UserData> userDataOpt = authUtil.getCurrentUser();
-        String email = userDataOpt.map(UserData::getEmail).orElse("system");
+        Optional<UserDetailsData> userDataOpt = authUtil.getCurrentUser();
+        String email = userDataOpt.map(UserDetailsData::getEmail).orElse("system");
 
         Space space = new Space();
 
