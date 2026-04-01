@@ -1,21 +1,18 @@
 package ivents.ivents_ui_support.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "teams")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Role {
-
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,15 +20,15 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "created_on")
+    private Instant createdOn;
+
     @Column(name = "created_by")
     private String createdBy;
 
     @Column(name = "modified_by")
     private String modifiedBy;
 
-    @Column(name = "created_on")
-    private LocalDateTime createdOn;
-
     @Column(name = "modified_on")
-    private LocalDateTime modifiedOn;
+    private Instant modifiedOn;
 }

@@ -2,36 +2,32 @@ package ivents.ivents_ui_support.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.Instant;
 
 @Entity
-@Table(name = "permissions")
+@Table(name = "comments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Permission {
+@Builder
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "permission_name")
-    private String permissionName;
+    @Column(name = "content", nullable = false)
+    private String content;
 
-    @Column(name = "module")
-    private String module;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
-    @Column(name = "sub_module")
-    private String subModule;
+    @Column(name = "space_id", nullable = false)
+    private Long spaceId;
 
-    @Column(name = "uri")
-    private String uri;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "verb")
-    private String verb;
+    @Column(name = "parent_id")
+    private Long parentId;
 
     @Column(name = "created_by")
     private String createdBy;

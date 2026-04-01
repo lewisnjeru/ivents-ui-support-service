@@ -2,7 +2,7 @@ package ivents.ivents_ui_support.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "users")
@@ -34,7 +34,7 @@ public class User {
     private Integer failedLogin = 0;
 
     @Column(name = "locked_until")
-    private LocalDateTime lockedUntil;
+    private Instant lockedUntil;
 
     @Column(name = "is_active")
     private Boolean isActive = true;
@@ -46,8 +46,8 @@ public class User {
     private String modifiedBy = "system";
 
     @Column(name = "created_on")
-    private LocalDateTime createdOn = LocalDateTime.now();
+    private Instant createdOn = Instant.now();
 
     @Column(name = "modified_on")
-    private LocalDateTime modifiedOn = LocalDateTime.now();
+    private Instant modifiedOn = Instant.now();
 }
