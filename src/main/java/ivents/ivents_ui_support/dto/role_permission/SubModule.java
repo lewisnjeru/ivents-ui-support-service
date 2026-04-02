@@ -8,5 +8,6 @@ public enum SubModule {
     COMMENT,
     INTAKE_REQUEST,
     ROLE,
-    NOTIFICATION;
+    NOTIFICATION,
+    PERMISSIONS,
 }

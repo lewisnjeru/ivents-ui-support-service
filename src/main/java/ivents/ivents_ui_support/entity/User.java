@@ -40,14 +40,14 @@ public class User {
     private Boolean isActive = true;
 
     @Column(name = "created_by")
-    private String createdBy = "system";
+    private String createdBy;
 
     @Column(name = "modified_by")
-    private String modifiedBy = "system";
+    private String modifiedBy;
 
     @Column(name = "created_on")
-    private Instant createdOn = Instant.now();
+    private Instant createdOn;
 
     @Column(name = "modified_on")
-    private Instant modifiedOn = Instant.now();
+    private Instant modifiedOn;
 }

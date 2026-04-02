@@ -38,7 +38,14 @@ public enum PermissionEnum {
     //roles
     GET_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/get", "Get Roles", Verb.GET.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
     CREATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/create", "Create Role", Verb.POST.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
-    UPDATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/update", "Update Role", Verb.PUT.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN, PermissionTag.MANAGER, PermissionTag.TELLER)),;
+    UPDATE_ROLES(Module.IVENTS.toString(), SubModule.ROLE.toString(), "/ivents/v1/roles/update", "Update Role", Verb.PUT.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN, PermissionTag.MANAGER, PermissionTag.TELLER)),
+
+    //user permission
+    GET_USER_PERMISSION(Module.IVENTS.toString(), SubModule.PERMISSIONS.toString(), "/ivents/v1/user-permissions/get", "Get Roles", Verb.GET.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
+    CREATE_USER_PERMISSION(Module.IVENTS.toString(), SubModule.PERMISSIONS.toString(), "/ivents/v1/user-permissions/create", "Create Roles", Verb.POST.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),
+    UPDATE_USER_PERMISSION(Module.IVENTS.toString(), SubModule.PERMISSIONS.toString(), "/ivents/v1/user-permissions/update", "Update Roles", Verb.PUT.toString(), List.of(PermissionTag.SUPER_ADMIN, PermissionTag.ADMIN)),;
+
+
 
     public final String module;
     public final String subModule;

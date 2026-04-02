@@ -11,6 +11,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ivents_data
       SPRING_DATASOURCE_USERNAME: ivents
       SPRING_DATASOURCE_PASSWORD: 1234password
+      SPRING_REDIS_HOST: shared-redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_REDIS_PASSWORD: strongpassword
     networks:
       - shared_network
     restart: unless-stopped

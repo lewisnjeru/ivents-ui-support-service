@@ -19,4 +19,6 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
             "JOIN RolePermission rp ON rp.permissionId = p.id " +
             "WHERE rp.roleId = :roleId")
     List<String> findAllPermissionNamesByRoleId(@Param("roleId") Long roleId);
+
+    Optional<Permission> findById(Long id);
 }
